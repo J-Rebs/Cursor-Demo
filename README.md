@@ -2,19 +2,6 @@
 
 A tool for analyzing risk factors from 10-K filings using AI. This tool processes PDF files of 10-K filings to extract, categorize, and analyze risk factors over time. This was made using Cursor. 
 
-## Project Structure
-
-```
-.
-├── data/                  # Output directory for analysis results
-├── data_to_use/          # Directory containing 10-K PDF files
-├── logs/                 # Log files
-├── src/
-│   ├── data_extractor.py # Main analysis logic
-│   └── main.py          # Script entry point
-└── requirements.txt      # Python dependencies
-```
-
 ## Setup
 
 1. Create a virtual environment:
