@@ -1,6 +1,6 @@
 # 10-K Risk Section Sentiment Analysis Tool
 
-A tool for analyzing risk factors from 10-K filings using AI. This tool processes PDF files of 10-K filings to find the most negative words and sentences in 10K filings from Apple. 
+A tool for analyzing risk factors from 10-K filings using AI. This tool processes PDF files of 10-K filings to find the most negative words and sentences in Apple filings. 
 
 ## Setup
 
