@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. Place your 10-K PDF files in the `data_to_use` directory.
+1. Place your 10-K PDF files in the `data_to_use` directory. This is informative; the files are already in this repo.
 
 2. Run the analysis:
 ```bash
