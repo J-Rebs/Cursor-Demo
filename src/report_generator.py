@@ -44,21 +44,20 @@ class ReportGenerator:
             
             # Add negative words section if available
             neg_words_vis_path = os.path.join(analysis_dir, 'negative_words_summary_hist.png')
-            if os.path.exists(neg_words_vis_path):
+            top_negative_path = os.path.join(analysis_dir, 'top_negative_words.csv')
+            if os.path.exists(neg_words_vis_path) and os.path.exists(top_negative_path):
                 report.append("## Negative Word Analysis")
                 report.append("\nThis section shows words with the strongest negative sentiment scores, as determined by VADER sentiment analysis. The scores range from 0 (neutral) to 1 (extremely negative).\n")
                 report.append("![Most Negative Words](analysis/negative_words_summary_hist.png)\n")
                 
-                # Add top negative words from the CSV
+                # Add top negative words from the dedicated CSV
                 try:
-                    word_freq_df = pd.read_csv(word_freq_path)
-                    # Sort by negative sentiment score and get top 10
-                    negative_words = word_freq_df.sort_values('negative', ascending=False).head(10)
+                    negative_words = pd.read_csv(top_negative_path)
                     report.append("\n### Top 10 Most Negative Words\n")
                     for _, row in negative_words.iterrows():
                         report.append(f"- **{row['word']}** (Negative Score: {row['negative']:.3f})\n")
                 except Exception as e:
-                    logger.error(f"Error processing word frequency data: {str(e)}")
+                    logger.error(f"Error processing negative words data: {str(e)}")
             
             # Add negative sentences section if available
             sentence_sentiment_path = os.path.join(analysis_dir, 'sentence_sentiment_summary.csv')

@@ -177,14 +177,20 @@ class WordAnalyzer:
                 "Most Frequent Words"
             )
             
-            # Generate negative words histogram using the same data as the list
-            top_negative = df.sort_values('negative', ascending=False).head(10).to_dict('records')
+            # Get top negative words once and use for both list and histogram
+            top_negative = df.sort_values('negative', ascending=False).head(10)
+            
+            # Generate negative words histogram
             neg_hist_path = os.path.join(output_dir, 'negative_words_summary_hist.png')
             self._generate_negative_words_histogram(
-                top_negative,
+                top_negative.to_dict('records'),
                 neg_hist_path,
                 "Most Negative Words"
             )
+            
+            # Save top negative words to a separate CSV for the report
+            top_negative_path = os.path.join(output_dir, 'top_negative_words.csv')
+            top_negative.to_csv(top_negative_path, index=False)
             
         except Exception as e:
             logger.error(f"Error in word frequency analysis: {str(e)}", exc_info=True) 
