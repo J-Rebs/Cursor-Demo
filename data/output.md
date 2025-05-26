@@ -1,18 +1,25 @@
 # Risk Analysis Report
 
-Generated on: 2025-05-26 16:31:52
+Generated on: 2025-05-26 16:36:11
 
-## Most Frequent Words
+## Overview
 
-The following visualization shows the most frequently occurring words in the risk factors, regardless of their sentiment:
+This report analyzes risk factors from financial documents using three different approaches:
+1. Word frequency analysis to identify commonly used terms
+2. Sentiment analysis of individual words using VADER
+3. Sentence-level sentiment analysis using FinBERT
 
-![Word Frequency Analysis](analysis/word_frequencies_summary_hist.png)
+## Word Frequency Analysis
 
-## Most Negative Words
+The following visualization shows the 20 most frequently occurring words in the risk factors, regardless of their sentiment. This helps identify key themes and topics in the risk sections.
 
-The following visualization shows the words with the most negative sentiment scores:
+![Most Frequent Words](analysis/word_frequencies_summary_hist.png)
 
-![Negative Words Analysis](analysis/negative_words_summary_hist.png)
+## Negative Word Analysis
+
+This section shows words with the strongest negative sentiment scores, as determined by VADER sentiment analysis. The scores range from 0 (neutral) to 1 (extremely negative).
+
+![Most Negative Words](analysis/negative_words_summary_hist.png)
 
 
 ### Top 10 Most Negative Words
@@ -37,9 +44,9 @@ The following visualization shows the words with the most negative sentiment sco
 
 - **charges** (Negative Score: 1.000)
 
-## Most Negative Sentences
+## Negative Sentence Analysis
 
-The following sentences were identified as having the most negative sentiment using FinBERT:
+The following sentences were identified as having the most negative sentiment using FinBERT, a specialized financial sentiment analysis model. The scores represent the model's confidence in the negative sentiment.
 
 1. **Score: 0.972** - The Company expects its quarterly revenue and operating results to fluctuate. (from risk_ffb58afc-aa5d-4b55-8d12-8e0937575a35)
 

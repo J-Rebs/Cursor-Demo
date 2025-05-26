@@ -28,20 +28,26 @@ class ReportGenerator:
             report.append("# Risk Analysis Report")
             report.append(f"\nGenerated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             
+            report.append("## Overview")
+            report.append("\nThis report analyzes risk factors from financial documents using three different approaches:")
+            report.append("1. Word frequency analysis to identify commonly used terms")
+            report.append("2. Sentiment analysis of individual words using VADER")
+            report.append("3. Sentence-level sentiment analysis using FinBERT\n")
+            
             # Add word frequency analysis section if available
             word_freq_path = os.path.join(analysis_dir, 'word_frequencies_summary.csv')
             word_freq_vis_path = os.path.join(analysis_dir, 'word_frequencies_summary_hist.png')
             if os.path.exists(word_freq_path) and os.path.exists(word_freq_vis_path):
-                report.append("## Most Frequent Words")
-                report.append("\nThe following visualization shows the most frequently occurring words in the risk factors, regardless of their sentiment:\n")
-                report.append("![Word Frequency Analysis](analysis/word_frequencies_summary_hist.png)\n")
+                report.append("## Word Frequency Analysis")
+                report.append("\nThe following visualization shows the 20 most frequently occurring words in the risk factors, regardless of their sentiment. This helps identify key themes and topics in the risk sections.\n")
+                report.append("![Most Frequent Words](analysis/word_frequencies_summary_hist.png)\n")
             
             # Add negative words section if available
             neg_words_vis_path = os.path.join(analysis_dir, 'negative_words_summary_hist.png')
             if os.path.exists(neg_words_vis_path):
-                report.append("## Most Negative Words")
-                report.append("\nThe following visualization shows the words with the most negative sentiment scores:\n")
-                report.append("![Negative Words Analysis](analysis/negative_words_summary_hist.png)\n")
+                report.append("## Negative Word Analysis")
+                report.append("\nThis section shows words with the strongest negative sentiment scores, as determined by VADER sentiment analysis. The scores range from 0 (neutral) to 1 (extremely negative).\n")
+                report.append("![Most Negative Words](analysis/negative_words_summary_hist.png)\n")
                 
                 # Add top negative words from the CSV
                 try:
@@ -63,8 +69,8 @@ class ReportGenerator:
                     negative_sentences = sentence_sentiment_df[sentence_sentiment_df['label'] == 'negative'].sort_values('score', ascending=False).head(5)
                     
                     if not negative_sentences.empty:
-                        report.append("## Most Negative Sentences")
-                        report.append("\nThe following sentences were identified as having the most negative sentiment using FinBERT:\n")
+                        report.append("## Negative Sentence Analysis")
+                        report.append("\nThe following sentences were identified as having the most negative sentiment using FinBERT, a specialized financial sentiment analysis model. The scores represent the model's confidence in the negative sentiment.\n")
                         for i, (_, row) in enumerate(negative_sentences.iterrows(), 1):
                             clean_filename = self._clean_filename(row['file'])
                             report.append(f"{i}. **Score: {row['score']:.3f}** - {row['sentence']} (from {clean_filename})\n")
