@@ -1,6 +1,12 @@
 # Risk Analysis Report
 
-Generated on: 2025-05-26 16:25:22
+Generated on: 2025-05-26 16:31:52
+
+## Most Frequent Words
+
+The following visualization shows the most frequently occurring words in the risk factors, regardless of their sentiment:
+
+![Word Frequency Analysis](analysis/word_frequencies_summary_hist.png)
 
 ## Most Negative Words
 
@@ -11,25 +17,25 @@ The following visualization shows the words with the most negative sentiment sco
 
 ### Top 10 Most Negative Words
 
-- **affected** (Negative Score: 1.000)
+- **constrained** (Negative Score: 1.000)
 
-- **risky** (Negative Score: 1.000)
+- **debt** (Negative Score: 1.000)
 
-- **waste** (Negative Score: 1.000)
+- **pressure** (Negative Score: 1.000)
 
-- **anti** (Negative Score: 1.000)
+- **cutting** (Negative Score: 1.000)
 
-- **exposes** (Negative Score: 1.000)
+- **aggressive** (Negative Score: 1.000)
 
-- **punitive** (Negative Score: 1.000)
+- **disputes** (Negative Score: 1.000)
 
 - **uncertain** (Negative Score: 1.000)
 
-- **infringement** (Negative Score: 1.000)
+- **constrained** (Negative Score: 1.000)
 
-- **damages** (Negative Score: 1.000)
+- **delayed** (Negative Score: 1.000)
 
-- **failing** (Negative Score: 1.000)
+- **charges** (Negative Score: 1.000)
 
 ## Most Negative Sentences
 

@@ -77,7 +77,7 @@ class WordAnalyzer:
             'positive': scores['pos']
         }
     
-    def _generate_histogram(self, word_frequencies: dict, output_path: str, title: str = "Word Frequency Distribution") -> None:
+    def _generate_frequency_histogram(self, word_frequencies: dict, output_path: str, title: str = "Most Frequent Words") -> None:
         """Generate a histogram of word frequencies."""
         # Get top 20 words
         top_words = dict(sorted(word_frequencies.items(), key=lambda x: x[1], reverse=True)[:20])
@@ -157,20 +157,6 @@ class WordAnalyzer:
                             **scores  # Include all sentiment scores
                         })
                 
-                # Sort by negative score (highest first)
-                word_scores.sort(key=lambda x: x['negative'], reverse=True)
-                
-                # Get top 30 most negative words
-                top_negative = word_scores[:30]
-                
-                # Generate histogram for this file
-                hist_path = os.path.join(output_dir, f"negative_words_{risk_file.replace('.txt', '_hist.png')}")
-                self._generate_negative_words_histogram(
-                    top_negative,
-                    hist_path,
-                    f"Most Negative Words - {risk_file}"
-                )
-                
                 # Add to results
                 all_results.extend(word_scores)
             
@@ -180,12 +166,21 @@ class WordAnalyzer:
             df.to_csv(output_path, index=False)
             logger.info(f"Saved overall word frequency summary to {output_path}")
             
-            # Generate overall histogram
-            overall_hist_path = os.path.join(output_dir, 'negative_words_summary_hist.png')
+            # Generate frequency histogram
+            freq_hist_path = os.path.join(output_dir, 'word_frequencies_summary_hist.png')
+            self._generate_frequency_histogram(
+                {row['word']: row['frequency'] for _, row in df.iterrows()},
+                freq_hist_path,
+                "Most Frequent Words"
+            )
+            
+            # Generate negative words histogram using the same data as the list
+            top_negative = df.sort_values('negative', ascending=False).head(10).to_dict('records')
+            neg_hist_path = os.path.join(output_dir, 'negative_words_summary_hist.png')
             self._generate_negative_words_histogram(
-                sorted(all_results, key=lambda x: x['negative'], reverse=True)[:30],
-                overall_hist_path,
-                "Overall Most Negative Words"
+                top_negative,
+                neg_hist_path,
+                "Most Negative Words"
             )
             
         except Exception as e:
