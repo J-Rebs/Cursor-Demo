@@ -1,12 +1,12 @@
 # Risk Analysis Report
 
-Generated on: 2025-05-26 16:03:54
+Generated on: 2025-05-26 16:25:22
 
-## Word Frequency Analysis
+## Most Negative Words
 
-The word frequency analysis shows the most common words in the risk factors, along with their sentiment scores.
+The following visualization shows the words with the most negative sentiment scores:
 
-![Word Frequency Analysis](analysis/word_frequencies_summary_hist.png)
+![Negative Words Analysis](analysis/negative_words_summary_hist.png)
 
 
 ### Top 10 Most Negative Words
@@ -31,15 +31,9 @@ The word frequency analysis shows the most common words in the risk factors, alo
 
 - **failing** (Negative Score: 1.000)
 
-## Most Negative Words Visualization
-
-The following visualization shows the words with the most negative sentiment:
-
-![Negative Words Analysis](analysis/negative_words_summary_hist.png)
-
 ## Most Negative Sentences
 
-The following sentences were identified as having the most negative sentiment:
+The following sentences were identified as having the most negative sentiment using FinBERT:
 
 1. **Score: 0.972** - The Company expects its quarterly revenue and operating results to fluctuate. (from risk_ffb58afc-aa5d-4b55-8d12-8e0937575a35)
 

@@ -32,9 +32,16 @@ class ReportGenerator:
             word_freq_path = os.path.join(analysis_dir, 'word_frequencies_summary.csv')
             word_freq_vis_path = os.path.join(analysis_dir, 'word_frequencies_summary_hist.png')
             if os.path.exists(word_freq_path) and os.path.exists(word_freq_vis_path):
-                report.append("## Word Frequency Analysis")
-                report.append("\nThe word frequency analysis shows the most common words in the risk factors, along with their sentiment scores.\n")
+                report.append("## Most Frequent Words")
+                report.append("\nThe following visualization shows the most frequently occurring words in the risk factors, regardless of their sentiment:\n")
                 report.append("![Word Frequency Analysis](analysis/word_frequencies_summary_hist.png)\n")
+            
+            # Add negative words section if available
+            neg_words_vis_path = os.path.join(analysis_dir, 'negative_words_summary_hist.png')
+            if os.path.exists(neg_words_vis_path):
+                report.append("## Most Negative Words")
+                report.append("\nThe following visualization shows the words with the most negative sentiment scores:\n")
+                report.append("![Negative Words Analysis](analysis/negative_words_summary_hist.png)\n")
                 
                 # Add top negative words from the CSV
                 try:
@@ -47,13 +54,6 @@ class ReportGenerator:
                 except Exception as e:
                     logger.error(f"Error processing word frequency data: {str(e)}")
             
-            # Add negative words section if available
-            neg_words_vis_path = os.path.join(analysis_dir, 'negative_words_summary_hist.png')
-            if os.path.exists(neg_words_vis_path):
-                report.append("## Most Negative Words Visualization")
-                report.append("\nThe following visualization shows the words with the most negative sentiment:\n")
-                report.append("![Negative Words Analysis](analysis/negative_words_summary_hist.png)\n")
-            
             # Add negative sentences section if available
             sentence_sentiment_path = os.path.join(analysis_dir, 'sentence_sentiment_summary.csv')
             if os.path.exists(sentence_sentiment_path):
@@ -64,7 +64,7 @@ class ReportGenerator:
                     
                     if not negative_sentences.empty:
                         report.append("## Most Negative Sentences")
-                        report.append("\nThe following sentences were identified as having the most negative sentiment:\n")
+                        report.append("\nThe following sentences were identified as having the most negative sentiment using FinBERT:\n")
                         for i, (_, row) in enumerate(negative_sentences.iterrows(), 1):
                             clean_filename = self._clean_filename(row['file'])
                             report.append(f"{i}. **Score: {row['score']:.3f}** - {row['sentence']} (from {clean_filename})\n")

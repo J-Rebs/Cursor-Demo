@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 2. Run the analysis:
 ```bash
-python src/main.py --input data_to_use --output data
+rm -rf data/* && python src/main.py --input data_to_use --output data
 ```
 
 See [output.md](data/output.md) for what this application produces.

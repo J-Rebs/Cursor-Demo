@@ -94,8 +94,7 @@ class DataExtractor:
             logger.info(f"Starting text extraction from PDFs in {pdf_dir}")
             
             # Create output directory if it doesn't exist
-            text_output_dir = os.path.join(output_dir, 'extracted_texts')
-            os.makedirs(text_output_dir, exist_ok=True)
+            os.makedirs(output_dir, exist_ok=True)
             
             # Process PDFs
             pdf_files = [f for f in os.listdir(pdf_dir) if f.endswith('.pdf')]
@@ -116,7 +115,7 @@ class DataExtractor:
                 
                 # Create output filename
                 base_name = os.path.splitext(pdf_file)[0]
-                output_file = os.path.join(text_output_dir, f"{base_name}_{year}.txt")
+                output_file = os.path.join(output_dir, f"{base_name}_{year}.txt")
                 
                 # Save text to file
                 with open(output_file, 'w', encoding='utf-8') as f:
@@ -124,7 +123,7 @@ class DataExtractor:
                 
                 logger.info(f"Saved extracted text to {output_file}")
             
-            logger.info(f"Extraction complete. Results saved to {text_output_dir}")
+            logger.info(f"Extraction complete. Results saved to {output_dir}")
             
         except Exception as e:
             logger.error(f"Error in text extraction: {str(e)}", exc_info=True) 
