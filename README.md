@@ -37,7 +37,7 @@ pip install -r requirements.txt
 python src/main.py --input data_to_use --output data
 ```
 
-See ![output.md](data/output.md) for what this application produces.
+See [output.md](data/output.md) for what this application produces.
 
 ## Notes
 
