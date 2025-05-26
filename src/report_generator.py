@@ -66,7 +66,10 @@ class ReportGenerator:
                 try:
                     sentence_sentiment_df = pd.read_csv(sentence_sentiment_path)
                     # Filter for negative sentences and sort by score
-                    negative_sentences = sentence_sentiment_df[sentence_sentiment_df['label'] == 'negative'].sort_values('score', ascending=False).head(5)
+                    negative_sentences = sentence_sentiment_df[
+                        (sentence_sentiment_df['label'] == 'negative') & 
+                        (sentence_sentiment_df['score'] > 0.5)  # Only include high-confidence negative sentences
+                    ].sort_values('score', ascending=False).head(5)
                     
                     if not negative_sentences.empty:
                         report.append("## Negative Sentence Analysis")

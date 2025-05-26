@@ -134,8 +134,8 @@ class WordAnalyzer:
             risk_files = [f for f in os.listdir(input_dir) if f.startswith('risk_') and f.endswith('.txt')]
             logger.info(f"Found {len(risk_files)} risk factor files to analyze")
             
-            # List to store all results
-            all_results = []
+            # Dictionary to store unique words and their analysis
+            unique_words = {}
             
             for risk_file in tqdm(risk_files, desc="Analyzing risk factors"):
                 # Read the risk factors file
@@ -147,21 +147,24 @@ class WordAnalyzer:
                 word_freq = self._get_word_frequencies(text)
                 
                 # Get sentiment scores for each word
-                word_scores = []
                 for word, freq in word_freq.items():
                     if len(word) > 2:  # Only analyze words longer than 2 characters
-                        scores = self._get_word_sentiment(word)
-                        word_scores.append({
-                            'word': word,
-                            'frequency': freq,
-                            **scores  # Include all sentiment scores
-                        })
-                
-                # Add to results
-                all_results.extend(word_scores)
+                        if word not in unique_words:
+                            scores = self._get_word_sentiment(word)
+                            unique_words[word] = {
+                                'word': word,
+                                'frequency': freq,
+                                **scores  # Include all sentiment scores
+                            }
+                        else:
+                            # Update frequency if word already exists
+                            unique_words[word]['frequency'] += freq
             
-            # Create DataFrame and save to CSV
+            # Convert to list and create DataFrame
+            all_results = list(unique_words.values())
             df = pd.DataFrame(all_results)
+            
+            # Save to CSV
             output_path = os.path.join(output_dir, 'word_frequencies_summary.csv')
             df.to_csv(output_path, index=False)
             logger.info(f"Saved overall word frequency summary to {output_path}")

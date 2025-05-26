@@ -1,6 +1,6 @@
 # Risk Analysis Report
 
-Generated on: 2025-05-26 16:36:11
+Generated on: 2025-05-26 16:39:07
 
 ## Overview
 
@@ -24,25 +24,25 @@ This section shows words with the strongest negative sentiment scores, as determ
 
 ### Top 10 Most Negative Words
 
-- **constrained** (Negative Score: 1.000)
+- **conflict** (Negative Score: 1.000)
 
-- **debt** (Negative Score: 1.000)
+- **defect** (Negative Score: 1.000)
 
-- **pressure** (Negative Score: 1.000)
+- **damages** (Negative Score: 1.000)
 
-- **cutting** (Negative Score: 1.000)
+- **gross** (Negative Score: 1.000)
 
-- **aggressive** (Negative Score: 1.000)
+- **damaged** (Negative Score: 1.000)
 
-- **disputes** (Negative Score: 1.000)
+- **turmoil** (Negative Score: 1.000)
 
-- **uncertain** (Negative Score: 1.000)
+- **stop** (Negative Score: 1.000)
 
-- **constrained** (Negative Score: 1.000)
+- **weaken** (Negative Score: 1.000)
 
-- **delayed** (Negative Score: 1.000)
+- **pay** (Negative Score: 1.000)
 
-- **charges** (Negative Score: 1.000)
+- **interruption** (Negative Score: 1.000)
 
 ## Negative Sentence Analysis
 
