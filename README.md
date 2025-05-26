@@ -41,9 +41,11 @@ See ![output.md](data/output.md) for what this application produces.
 
 ## Notes
 
-This is primarily to demonstrate the capacity of Cursor to help generated a useful data processing application with some use of AI. It shows the speed and ease of use being generated over about 3 hours on a weekend day. 
+This is primarily to demonstrate the capacity of Cursor to help generated a useful data processing application with some use of AI. It shows the speed and ease of using Cursor while also highlighting a few other learnings:
+- Try to break the desired output into smaller logical parts Cursor can work with. 
+- During development, it can be useful to produce interemediate outputs that are easier to check. 
 
-It does not consider things like proper pythong packaging or extensibility beyond the sourced 10Ks. In a real world scenario, it may be useful to use SEC APIs to access 10k data. 
+It does not consider things like proper python packaging, testing, or extensibility beyond the sourced 10Ks. In a real world scenario, it may be useful to use SEC APIs to access 10k data. 
 
 ## License
 
